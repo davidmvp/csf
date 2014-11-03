@@ -1,0 +1,162 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
+{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720
+
+\f0\fs24 \cf0 9-11-13 (Week 3)\
+\
+Designing Circuits\
+\
+    - Truth Table\
+    - Formula in DNF(1)/CNF(0)\
+    - Simplify\
+\
+               |..9..\
+         -------------\
+               |  0\
+               |  1 ------> 3 minterms for DNF (pick DNF/CNF to minimize size)\
+               |  0         ^ ^\
+               |  0         | |\
+               |  0         | |\
+               |  1 --------- |\
+               |  1 -----------\
+               |  0\
+\
+\
+\
+        A - |--| = A + B (Sum S, not OR)\
+            |HA|\
+        B - |--| = Carry C\
+\
+           "Half Adder"\
+\
+        Truth Table for Half Adder\
+            \
+            A B | S C\
+            ---------\
+            0 0 | 0 0\
+            0 1 | 1 0\
+            1 0 | 1 0\
+            1 1 | 0 1  < ---- binary addition\
+                                1 + 1 = 10 (sum of 0, carry of 1)\
+\
+        S = ~A * B + A * ~B (SUM)\
+        C = A * B (CARRY)\
+\
+\
+               A     B\
+               |~A   |~B\
+               | |   | |\
+               | :---|-|--[AND]---\
+               | |   :-|----^    |\
+CARRY--[AND]=--: |   | |         |\
+            ^--|-|---: |         >--=[OR]--SUM\
+               | |   | |         |\
+               :-|---|-|--[AND]---\
+               | |   | :----^\
+\
+    "Full Adder"\
+        \
+        \
+        A-----|----|--S\
+        B-----| FA | \
+        Cin---|----|--Cout    \
+\
+        Cin A B | S Cout\
+        ----------------\
+        0   0 0 | 0 0\
+        0   0 1 | 1 0\
+        0   1 0 | 1 0\
+        0   1 1 | 0 1\
+        1   0 0 | 1 0\
+        1   0 1 | 0 1\
+        1   1 0 | 0 1\
+        1   1 1 | 1 1\
+\
+\
+            Full Adder with 2 Half Adders\
+\
+        Cin-----------------------|----|------------S  <--- Final SUM\
+                                  | HA | C\
+        A--|----|-----------------|----|----[OR]------C  <--- Final CARRY\
+           | HA | S                          ^\
+        B--|----|----------------------------|\
+                  C\
+\
+        Other ways to create Full Adders\
+            Rippe-Carry Adder (wouldn't use it. It "bounces" the CARRY arround)\
+\
+            Carry-SomethingSomething Adder (I couldn't Peter's handwriting :/ Someone help me out...)\
+\
+Multiplexer\
+\
+    Bunch of inputs, one output 2^n-to-1 Mux\
+             --|---|\
+             --| M |\
+             --| U |\
+              .| X |--->\
+              .|   |\
+             --|---|\
+\
+                    \
+    2-to-1 Mux\
+\
+         A->|---|\
+            |   |->C\
+         B->|---|\
+              ^\
+              |\
+              S\
+                                     \
+         S = 0 --> C = A\
+         S = 1 --> C = B\
+           (Convention)\
+\
+\
+          S A B | C\
+          ---------\
+          0 0 0 | 0\
+          0 0 1 | 0                                                                                                    --------------\
+          0 1 0 | 1--->--- C = ~SA~B + ~SAB + S~AB + SAB = ~S(A~B + AB) + S(~AB + AB) = ~S(A(~B + B)) + S(B(~A + A)) = |C = ~SA + SB|\
+          0 1 1 | 1---^                                                                                                --------------\
+          1 0 0 | 0   |\
+          1 0 1 | 1---^\
+          1 1 0 | 0   |\
+          1 1 1 | 1---^\
+                    \
+    Build Mux out of decoders and gates\
+\
+        S                A       B\
+        |decoder         |       |\
+    ----------           |       |\
+    | 1-to-2 |           |       |\
+    ----------           |       |\
+    Sa|    |Sb           |       |\
+      :----|-------------|-------|-----V\
+           |             |       |   [AND]---\
+           |             :-------|-----^    |\
+           |             |       |          |\
+           |             |       |          >---[OR]--C\
+           |             |       :-----V    |\
+           |             |       |   [AND]---\
+           :-------------|-------|-----^\
+\
+\
+\
+\
+\
+\
+\
+Demultiplexer\
+\
+    One input, bunch of outputs 1-to-2^n Demux\
+               |---|\
+               | D |--->\
+               | E |--->\
+           --->| M |--->\
+               | U |--->\
+               | X |--->\
+               |---|\
+}

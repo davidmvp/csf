@@ -1,0 +1,54 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 Computer Systems Fundamentals\
+Assignment 1: Combinational Circuits\
+Name: Da Lu\
+Email:dlu6@jhu.edu\
+\
+Problem 1: RS Latches using NOR gates:\
+\
+1.\
+R	S      			\
+1	1	illegal		none\
+0	1	set		q = 1, q^ = 0\
+1	0	reset		q = 0, q^ = 1\
+0	0	hold		q = 0, q ^ = 1 or q = 1, q ^ = 0\
+\
+When R=1 and S=1, it is an illegal state because both NOR gates would output 2 zeros instead or 1 zero and 1 one.  q = q^, which is wrong.  \
+When R = 0 and S = 1, it is a set state because q = 1 and q^ = 0.\
+When R = 1 and S = 0, it is a reset state because q = 0 and q^ = 1.\
+When R = 0 and S = 0, it becomes a hold state, because q and q^ can be both 0 and 1, 1 and 0.\
+It is shown in figure 1.\
+\
+Problem 2: Shift Register\
+\
+Figure 2 shows what additional circuitry is necessary to turn NOR RS latch into an edge triggered D-type flip-flop.  Essentially, it is the same as the one built out of NAND RS latches.  They have the same number of gates, also the same "propagation delay".  They are exactly the same except one is built out of NAND gates and one is NOR gates.\
+\
+\
+Problem 2:Shift Register\
+See figure 3.\
+The inputs has LD and 1 clock.  As the problem states, when LD is high, it connects to AND gates with inputs and connected to D type flip- flops.  \
+When LD is low, DIR is attached to and serves as the inputs for the 4 multiplexers we have.  The inputs of the 4 multiplexers are the outputs of the flip flops.  When DIR is high, multiplexers will select the input from the right flip flop and shift values right as the problem stated.  And when DIR is low, multiplexers will select the input from the left flip-flop and shift the values left.\
+\
+\
+Problem 3: Arithmetic Logic Unit:\
+See figure 4.\
+First, A and B are 4-bit inputs and they are broken into 1-bit inputs.  They are all connected to a multiplexer using AND,OR, NOT gates, and a FA (full adder).  Its carry output connect the next FA. All the outputs will then come together to produce the final output.\
+\
+\
+Problem 4: Reliability of Memory:\
+The probability of a D-type latch operating properly is 99.999999%.  In every byte memory cell, there is a D-type latch.\
+\
+Probability of 1 megabytes(2 to 20 bits) operating properly is  0.99999999^(1048576) =  0.98956902384%.\
+\
+The probability of a 4GB memory module has a 99% chance of operating correctly.\
+Then the probability of our D-type  0.99 = r^(1073741824)  r = 0.99.\
+\
+\
+\
+\
+}

@@ -1,0 +1,137 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww25100\viewh14520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 Computer Systems Fundamentals\
+Assignment 1: Combinational Circuits\
+Name: Da Lu\
+Email:dlu6@jhu.edu\
+\
+\
+\
+Problem 1 Universal gates\
+\
+\
+NAND gates:\
+Symbol for NAND gate &[ ]\
+Truth table for NAND:\
+A B    Output\
+0 0	1\
+0 1	1\
+1 0	1\
+1 1	0\
+\
+\
+Implement NOT\
+Since the two inputs need to be the same, we only need to look at two cases:0,0 and 1,1.  The output for each is 1 and 0, the same as a NOT gate.  The only difference is that we need two inputs instead of one.  &[AA] is the algebraic expression for this answer.\
+\
+\
+Implement AND\
+NAND gate is the opposite of AND, so we need to have a NAND gate and implement it with  answer from part NOT.  Basically we just to have two NAND gates, and the algebraic expression is &[&[AB]]. If we only have one input, then we make the second input the same as the first one.\
+\
+\
+Implement OR\
+We need to use Demorgan's law, which helps us to get a OR gate using AND gates.   We already know how to implement an AND gate using NAND gate in previous part, now we just need to apply Demorgan's law.  The algebraic expression is &[ &[AA] &[BB ] ].  \
+\
+\
+\
+NOR gates:\
+\
+Symbol for NOR gate %[ ]\
+\
+Truth table for NOR:\
+A B    Output\
+0 0	1\
+0 1	0\
+1 0	0\
+1 1	0\
+\
+\
+Implement NOT\
+Since the two inputs need to be the same, we only need to look at two cases:0,0 and 1,1.  The output for each is 1 and 0, the same as a NOT gate.  The only difference is that we need two inputs instead of one.  %[AA] is the algebraic expression for this answer.\
+\
+\
+Implement AND\
+We need to use Demorgan's law, which helps us to get a AND gate using OR gates. I implemented OR first(last part) and then used the answer to get the answer for this part.  The algebraic expression is %[ %[AA] %[BB ] ].  \
+Implement OR\
+NOR gate is just the opposite of OR.  We basically need two NOR gates to implement OR.  The algebraic expression is %[%[AB]].  If we only have one input, then we make the second input the same as the first one.\
+\
+\
+Problem 2: XOR and XNOR gates:\
+\
+Implement XOR gate using NOT, AND ,OR\
+' : not\
++: or\
+*: and\
+Truth table for XOR:\
+A B    Output\
+0 0	0\
+0 1	1\
+1 0	1\
+1 1	0\
+We see two 1s as outputs.  We can derive a formula using DNF, which is  A'  * B + A * B'.   We can not simplify,so we leave it as it is.\
+\
+Implement XNOR gate using NOT, AND ,OR\
+' : not\
++: or\
+*: and\
+Truth table for XOR:\
+A B    Output\
+0 0	1\
+0 1	0\
+1 0	0\
+1 1	1\
+We see two 1s as outputs.  We can derive a formula using DNF, which is  A'  * B' + A * B.   We can not simplify,so we leave it as it is.\
+\
+\
+Problem 3: Half Adder Reconsidered\
+Truth Table for half adder:\
+A  B   Sum    Carry\
+0  0    0         0\
+0  1    1         0\
+1  0    1         0\
+1  1    0         1\
+Looking at the sum, I found that  it is exactly the same as the output for Xor gate.  Looking at the carry column,  I found that it is exactly the same as AND gate. So all we need is a XOR gate and AND gate to implement a half adder.\
+\
+\
+\
+Problem 4: Seven Segment Display Decoder:\
+Below is a truth table for this problem. X, Y and Z are inputs and A, B, C, D, E, F and G are outputs to produce numbers from 0 to 7.\
+	X	Y	Z	A	B	C	D	E	F	G\
+0          0	0	0	1	1	1	1	1	1	0		   \
+1	0	0	1	0	1	1	0	0	0	0\
+2	0	1	0	1	1	0	1	1	0	1\
+3	0	1	1	1	1	1	1	0	0	1\
+4	1	0	0	0	1	1	0	0	1	1\
+5	1	0	1	1	0	1	1	0	1	1\
+6	1	1	0	1	0	1	1	1	1	1\
+7	1	1	1	1	1	1	0	0	0	0\
+\
+\
+Symbols:\
+' : not\
++: or\
+*: and\
+&[ ]: NAND\
+%[ ] : NOR\
+@[ ] : XNOR\
+#[ ] : XOR\
+\
+A:  I realize that when X = 1, its exactly like OR.  When X = 0, there is only 1 output that is equal to 0.  The final answer is  X * (Y+Z) + (X'  *  Y'  * Z)'\
+\
+B:  When X = 0, output is always 1.  And when x = 1, it is exactly like a XNOR gate.  The answer is X' + X * @[YZ]\
+\
+C:  When X = 1, output is always 1.  WHen X = 0, there is only one output that is equal to 0.  The answer is  X + (X' * Y * Z')'.\
+\
+D: When X = 1, its output is the same as a XOR gate. When X = 0, there is only one 0 output. The answer is X* #[YZ] + (X' * Y' * Z)'\
+\
+E: When X = 0, output is the opposite of Z. And when X = 1, there is only one 1 output.  The answer is X' * Z' + X*Y*Z'\
+\
+F: When X = 0, its output is the same as NOR gate .And when X = 1, there is only one 0 output. The answer is  X* %[YX] + (X' * Y' * Z)'\
+\
+G: When X = 0, Y is the same as output.  When X = 1, its output is the same as NAND gate. The answer is X' * Y + X * &[XY]\
+\
+\
+}
